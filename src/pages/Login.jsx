@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {login} from '../config/firebase'
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
+import { useRedirectActiveUser } from "../hooks/useRedirectActiveUser";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //importo el navigate para redirigir
+  const navigate = useNavigate()
+
+  //importo el hook que hice yo
+  const {user} = useUserContext()
+
+  console.log(user)
+  //hago un useEffect para redirigir al usuario al dash
+  useRedirectActiveUser(user,"/dashboard")
 
   const handleSubmit = async(e)=> {
     e.preventDefault()

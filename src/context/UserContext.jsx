@@ -25,7 +25,7 @@ export default function UserContextProvider({ children }) {
     });
     //si tengo un metodo que destruya el metodo use effect activo el unsuscribe y retorno, es la misma validacion de seguridad de arriba
     return unsuscribe;
-  });
+  }),[];
 
   //pequeña validacion de usuario con false, null o el objeto que venga del useEffect
   if (user == false){

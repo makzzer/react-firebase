@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { register } from "../config/firebase";
+import { useUserContext } from "../context/UserContext";
+import { useRedirectActiveUser } from "../hooks/useRedirectActiveUser";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //me traigo el estado del usuariodesde el context que hice
+  const {user} = useUserContext()
+
+  //llamo al hook que hice para redirigirlo a la ruta protegida o fuera de ella
+  useRedirectActiveUser(user,"/dashboard")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
