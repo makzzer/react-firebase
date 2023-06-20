@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+
+console.log(import.meta.env.VITE_FIREBASE_API_KEY,)
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,4 +14,16 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+//este auth me trae toda la configuracion de mi proyecto
 export const auth = getAuth(app);
+
+//uso el metodo de firebase signInWithEmailAndPassword, 
+export const login = ({email,password})  =>{
+    return signInWithEmailAndPassword(auth,email,password)
+}
+
+export const register = ({email,password}) => {
+    return createUserWithEmailAndPassword(auth,email,password)
+
+
+}

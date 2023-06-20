@@ -8,3 +8,6 @@ const Private = () => {
 };
 
 export default Private;
+
+
+//https://bluuweb.dev/05-react/07-firebase.html
