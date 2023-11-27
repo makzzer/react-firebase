@@ -14,14 +14,16 @@ export default function UserContextProvider({ children }) {
   //hago un use effect para controlar el estado del context
   //quiero saber si el usuario ya existe o tiene la cuenta activa en mi aplicacion, y eso lo voy a sacar de firebase
   useEffect(() => {
-    console.log("use effect en accion");
+   // console.log("use effect en accion drfsdfsf");
 
     //le agrego una pequeña validacion para que no se ejecute mas de una vez este metodo
     //onAuthStateChanged no devuelve una promesa, de alguna forma tengo que hacer que la devuelva
     const unsuscribe = onAuthStateChanged(auth, (user) => {
       //al user le seteo lo que me devuelva el metodo de firebase onAuthStateChanged, puede devolver el objeto usuario o null
       //por lo que voy a tener en user 3 estados, el False incial, el objeto de la cuenta (si eso existe podemos ingresar a la ruta protegida) o null
+      
       setUser(user);
+      console.log(user)
     });
     //si tengo un metodo que destruya el metodo use effect activo el unsuscribe y retorno, es la misma validacion de seguridad de arriba
     return unsuscribe;
@@ -33,10 +35,6 @@ export default function UserContextProvider({ children }) {
         <h1>Loading App...</h1>
     )
   }
-
-
-
-
 
 
     return (
