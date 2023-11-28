@@ -3,14 +3,33 @@ import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword, sig
 
 console.log(import.meta.env.VITE_FIREBASE_API_KEY,)
 
-const firebaseConfig = {
+
+//esta es la mejor forma de hacer para deploydear en produccion
+//ocultando las keys en un file separado
+//pero para netlify voy a eliminar esto y lo voy a poner directo para deploydear bien
+/*const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
     projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
     storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};*/
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDvotHxDyjnacYecHWYE66T-4fhrtZPd_c",
+    authDomain: "udemy-react-2023-80f11.firebaseapp.com",
+    projectId: "udemy-react-2023-80f11",
+    storageBucket: "udemy-react-2023-80f11.appspot.com",
+    messagingSenderId: "668975970932",
+    appId: "1:668975970932:web:1e985d252f5cd19a7c2f21",
 };
+
+
+
+
+
 
 const app = initializeApp(firebaseConfig);
 
