@@ -123,13 +123,13 @@ const Login = () => {
 
               <TextField
                 type="password"
-                placeholder="Ingrese Contraseña"
+                placeholder="123123"
                 value={values.password}
                 onChange={handleChange}
                 name="password"
                 onBlur={handleBlur}
                 id="password"
-                label="Ingresa la contraseña perri"
+                label="Ingresa tu contraseña perri"
                 fullWidth
                 sx={{ mb: 3, mx: "auto" }}
                 error={errors.password && touched.password}

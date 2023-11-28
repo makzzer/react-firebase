@@ -118,7 +118,7 @@ const Register = () => {
               Registrar usuario
             </LoadingButton>
             <Button fullWidth component={Link} to="/">
-              Iniciar Sesión
+              ¿Ya tenes cuenta? Iniciar Sesión
             </Button>
           </Box>
         )}
