@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { login } from "../config/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import { useRedirectActiveUser } from "../hooks/useRedirectActiveUser";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Box, Avatar, Typography, TextField } from "@mui/material";
+import { Box, Avatar, Typography, TextField, Button } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
@@ -119,21 +120,6 @@ const Login = () => {
                 helperText={errors.email}
               ></TextField>
 
-              {/*
-              <input
-                type="text"
-                placeholder="Ingrese email"
-                value={values.email}
-                onChange={handleChange}
-                name="email"
-                onBlur={handleBlur}
-                //el atributo name tiene que coincidir con el nombre de las propiedaes que pongo en initialValues arriba
-              />/
-              {
-                //esto lo voy a usar para mostrar el mensaje de error en el campo, touched.password es cuando esta posicionado sobre el campo, el errors.email es el que defino en Yup caundo hago el esquema
-                errors.email && touched.email && errors.email
-              }*/}
-
               <TextField
                 type="password"
                 placeholder="Ingrese Contraseña"
@@ -144,28 +130,29 @@ const Login = () => {
                 id="password"
                 label="Ingresa la contraseña perri"
                 fullWidth
-                sx={{mb: 3, mx: "auto" }}
+                sx={{ mb: 3, mx: "auto" }}
                 error={errors.password && touched.password}
                 helperText={errors.password}
               ></TextField>
 
-              {/*<input
-                type="password"
-                placeholder="Ingrese Contraseña"
-                value={values.password}
-                onChange={handleChange}
-                name="password"
-                onBlur={handleBlur}
-              />
-              {
-                //esto lo voy a usar para mostrar el mensaje de error en el campo, touched.password es cuando esta posicionado sobre el campo, el errors.password es el que defino en Yup caundo hago el esquema
-                errors.password && touched.password && errors.password
-              }
-            */}
-
-              <button type="submit" disabled={isSubmitting}>
+              <LoadingButton
+                type="submit"
+                disabled={isSubmitting}
+                loading={isSubmitting}
+                fullWidth
+                sx={{ mb: 3 }}
+                variant="contained"
+              >
                 Login
-              </button>
+              </LoadingButton>
+
+              <Button
+              fullWidth
+              component={Link}
+              to="/register"
+              
+              
+              >¿No tenes cuenta? Registrate</Button>
             </Box>
           )
         }

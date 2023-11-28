@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard (ruta protegida)</h1>
+      <h1>Acá va a haber algo! (ruta protegida)</h1>
       <Button onClick={handleLogout}>Logout</Button>
     </>
   );
