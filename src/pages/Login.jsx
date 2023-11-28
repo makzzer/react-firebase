@@ -5,6 +5,9 @@ import { useUserContext } from "../context/UserContext";
 import { useRedirectActiveUser } from "../hooks/useRedirectActiveUser";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { Box, Avatar, Typography, TextField } from "@mui/material";
+
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,17 +47,17 @@ const Login = () => {
       const credentialUser = await login({ email, password });
       console.log(credentialUser);
       console.log("usuario loguado correctamente");
-      resetForm()
+      resetForm();
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
-      if (error.code === "auth/user-not-found") { //acá tomo lo que me devulve firebase y lo convierto en un error que muestre Yup
+      if (error.code === "auth/user-not-found") {
+        //acá tomo lo que me devulve firebase y lo convierto en un error que muestre Yup
         return setErrors({ email: "Usuario no registrado" });
       }
-      if (error.code === "auth/wrong-password"){
-        return setErrors({password: "Contraseña incorrecta"})
+      if (error.code === "auth/wrong-password") {
+        return setErrors({ password: "Contraseña incorrecta" });
       }
-
     } finally {
       //osea cada vez que procese el formulario pasa a verdadero, y caundo firebase devuelve la respuesta lo vuelve a poner en false
       setSubmitting(false);
@@ -70,10 +73,17 @@ const Login = () => {
       .required("Password requerida"),
   });
 
-  //en el return llamo a Formik
+  //En el return llamo a Formik
+  //Le voy a dar estilos al formulario con MaterialUI
   return (
-    <>
-      <h1>Login</h1>
+    <Box sx={{ mt: 8, maxWidth: "400px", mx: "auto", textAlign: "center" }}>
+      <Avatar sx={{ mx: "auto", bgcolor: "#111" }}>
+        <AddAPhotoIcon />{" "}
+      </Avatar>
+
+      <Typography variant="h5" component="h1">
+        Login
+      </Typography>
 
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -92,7 +102,24 @@ const Login = () => {
             handleBlur,
             isSubmitting,
           }) => (
-            <form onSubmit={handleSubmit}>
+            //si uso component="form" con ese prop components es el elemento que voy a renderizar al final en el HTML
+            <Box onSubmit={handleSubmit} sx={{ mt: "8px" }} component="form">
+              <TextField
+                type="text"
+                placeholder="makz@example.com"
+                value={values.email}
+                onChange={handleChange}
+                name="email"
+                onBlur={handleBlur}
+                id="email"
+                label="Ingresa tu mail perri"
+                fullWidth
+                sx={{ mb: 3, mx: "auto" }}
+                error={errors.email && touched.email}
+                helperText={errors.email}
+              ></TextField>
+
+              {/*
               <input
                 type="text"
                 placeholder="Ingrese email"
@@ -101,13 +128,28 @@ const Login = () => {
                 name="email"
                 onBlur={handleBlur}
                 //el atributo name tiene que coincidir con el nombre de las propiedaes que pongo en initialValues arriba
-              />
+              />/
               {
                 //esto lo voy a usar para mostrar el mensaje de error en el campo, touched.password es cuando esta posicionado sobre el campo, el errors.email es el que defino en Yup caundo hago el esquema
                 errors.email && touched.email && errors.email
-              }
+              }*/}
 
-              <input
+              <TextField
+                type="password"
+                placeholder="Ingrese Contraseña"
+                value={values.password}
+                onChange={handleChange}
+                name="password"
+                onBlur={handleBlur}
+                id="password"
+                label="Ingresa la contraseña perri"
+                fullWidth
+                sx={{mb: 3, mx: "auto" }}
+                error={errors.password && touched.password}
+                helperText={errors.password}
+              ></TextField>
+
+              {/*<input
                 type="password"
                 placeholder="Ingrese Contraseña"
                 value={values.password}
@@ -119,15 +161,16 @@ const Login = () => {
                 //esto lo voy a usar para mostrar el mensaje de error en el campo, touched.password es cuando esta posicionado sobre el campo, el errors.password es el que defino en Yup caundo hago el esquema
                 errors.password && touched.password && errors.password
               }
+            */}
 
               <button type="submit" disabled={isSubmitting}>
                 Login
               </button>
-            </form>
+            </Box>
           )
         }
       </Formik>
-    </>
+    </Box>
   );
 };
 
