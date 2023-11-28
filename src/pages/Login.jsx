@@ -9,6 +9,7 @@ import { Box, Avatar, Typography, TextField, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -79,7 +80,7 @@ const Login = () => {
   return (
     <Box sx={{ mt: 8, maxWidth: "400px", mx: "auto", textAlign: "center" }}>
       <Avatar sx={{ mx: "auto", bgcolor: "#111" }}>
-        <AddAPhotoIcon />{" "}
+        <AccountCircleIcon />
       </Avatar>
 
       <Typography variant="h5" component="h1">
@@ -93,7 +94,7 @@ const Login = () => {
       >
         {
           //necesito retornar dentro de este componente , mi componente de formulario con parametros propios de Formik como values, handleSumbmit,onChange
-          //uso el onBlur para que detecte el error antes que el usuario le de a enviar el formulario, osea el submit
+          //uso el onBlur para que detecte el error antes que el usuario le de a enviar el formulario, osea le de al submit
           ({
             values,
             handleSubmit,
